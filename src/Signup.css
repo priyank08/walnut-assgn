@@ -24,8 +24,9 @@
 
 .radio {
   width: 30px;
-  display:inital;
+  display:inline;
   vertical-align: middle;
+  margin: 0 10px;
 
 }
 
@@ -66,14 +67,35 @@ width: 200px;
 }
 .Submit {
   background-color: #0DD149;
+  color: #ffffff;
 }
 .inactive {
   background-color: #4a4a4a;
+  color: #ffffff;
 }
 
 .success {
   color: #12C23F;
   font-size: 20px;
+}
+
+input[type="button" i]:disabled, input[type="submit" i]:disabled, input[type="reset" i]:disabled, input[type="file" i]:disabled::-webkit-file-upload-button, button:disabled, select:disabled, optgroup:disabled, option:disabled, select[disabled] > option {
+  color: #ffffff!important;
+}
+
+.slider-span{
+  width: 100%;
+}
+
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio]{
+  display: inline-block;
+  width: 14px!important;
+}
+
+.tick{
+  display: inline-block;
+  width: 30px;
 }
 
 @media screen and (min-width:320px) and (max-width:768px){

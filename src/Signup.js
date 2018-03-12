@@ -10,6 +10,7 @@ import _ from 'underscore';
 import ReactSliderNativeBootstrap from 'react-bootstrap-native-slider';
 import Select from 'react-select';
 import fetchJsonp from 'fetch-jsonp';
+import Tick from './tick.png';
 import './Signup.css';
 import 'react-select/dist/react-select.css';
 
@@ -87,7 +88,7 @@ class Signup extends Component {
 
   addFirstName(e) {
     var updatedError = "";
-    const regEx = /^[a-zA-Z]+$/;
+    const regEx = /^[a-zA-Z_ ]+$/;
 
     if(!regEx.test(e.target.value)){
       updatedError = 'Please enter Letters only';
@@ -189,14 +190,13 @@ class Signup extends Component {
         updatedError.first_name = 'Please fill in your First Name';
       } else if (!email) {
           updatedError.email = "Please Enter Email Id";
-      }
-      else if (!genderValue) {
-        updatedError.genderValue = 'Please select your Gender';
-      } else if (!phone) {
+      }else if (!phone) {
         updatedError.phone = 'Please enter your Phone number';
       } else if (phone.length < 10){
         updatedError.phone = 'Phone number should be 10 digits';
-      } else if ( birth_date_empty) {
+      } else if (!genderValue) {
+        updatedError.genderValue = 'Please select your Gender';
+      }  else if ( birth_date_empty) {
         updatedError.kids_date_gender = 'Please select Birth Date';
       }
       this.setState({
@@ -283,7 +283,8 @@ class Signup extends Component {
                   <FormGroup>
                     <InputGroup>
                       <InputGroup.Addon><i className="fa fa-mobile"></i></InputGroup.Addon>
-                      <FormControl type="text" placeholder="+91"
+                      <InputGroup.Addon><span>+91</span></InputGroup.Addon>
+                      <FormControl type="text"
                       name="company[mobile]"
                       maxLength="10"
                       value={this.state.phone}
@@ -377,10 +378,9 @@ class Signup extends Component {
                  <fieldset>
                    <h3 className="fs-subtitle">Tell us more about you</h3>
                    <FormGroup className="text-left">
-                     <InputGroup>
+                     <InputGroup className="slider-span">
                        <label>Salary</label>
                         <ReactSliderNativeBootstrap
-                        className="slider-span"
                         value={this.state.currentValue}
                         handleChange={this.changeValue}
                         step={this.state.salary_step}
@@ -417,7 +417,9 @@ class Signup extends Component {
                      </div>
 
                    </FormGroup>
-                  <input type="button" name="Submit" className={this.state.isdisabled ? "inactive" : "Submit"}  value="Submit" onClick={this.submitRegistrationDetails.bind(this)} disabled={this.state.isdisabled}/>
+                   <FormGroup>
+                    <input type="button" name="Submit" className={this.state.isdisabled ? "inactive" : "Submit"}  value="Submit" onClick={this.submitRegistrationDetails.bind(this)} disabled={this.state.isdisabled}/>
+                    </FormGroup>
                  </fieldset>
                </form>
        </div>
@@ -455,7 +457,9 @@ class Signup extends Component {
       <div className="">
               <form id="msform">
                 <fieldset>
+                  <img src={Tick} className="text-center" className="img-responsive tick" />
                   <h2 className="success">You have successfully signed up!!!</h2>
+
                 </fieldset>
               </form>
       </div>
