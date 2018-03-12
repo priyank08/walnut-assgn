@@ -1,0 +1,83 @@
+
+.logo {
+   width: 100px;
+   height: 75px;
+   margin: 20px auto;
+}
+
+.react-datepicker-wrapper {
+  display: block;
+}
+
+.react-datepicker__input-container{
+  display: block;
+}
+
+.react-datepicker-popper {
+    z-index: 2;
+}
+
+.errorMsg {
+  color: #ff0000;
+  font-size: 12px;
+}
+
+.radio {
+  width: 30px;
+  display:inital;
+  vertical-align: middle;
+
+}
+
+.submitReg-btn {
+  background-color: #276ab1;
+  color: #ffffff;
+}
+
+.date{
+  padding: 9px 15px!important;
+}
+
+.submitReg-btn:hover {
+  background-color:#002065;
+  color: #ffffff;
+}
+.value-label{
+  border: 1px solid #939393;
+  padding: 3px;
+}
+.react-native-slider {
+  padding: 0px!important;
+  width: 100%!important;
+}
+
+.Select-input {
+
+}
+.react-select-2--value{
+width: 200px;
+}
+
+.Checkbox-label {
+  width: 101%;
+}
+.check {
+  width: 15px!important;
+}
+.Submit {
+  background-color: #0DD149;
+}
+.inactive {
+  background-color: #4a4a4a;
+}
+
+.success {
+  color: #12C23F;
+  font-size: 20px;
+}
+
+@media screen and (min-width:320px) and (max-width:768px){
+  .success{
+    font-size:14px;
+  }
+}
