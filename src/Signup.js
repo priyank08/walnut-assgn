@@ -13,10 +13,13 @@ import fetchJsonp from 'fetch-jsonp';
 import Tick from './tick.png';
 import './Signup.css';
 import 'react-select/dist/react-select.css';
+import {reactLocalStorage} from 'reactjs-localstorage';
+
 
 class Signup extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       step: 1,
       salary_step: 5000,
@@ -35,7 +38,7 @@ class Signup extends Component {
       states:[],
       cities:[],
       ismodal : false,
-      isdisabled : true
+      isdisabled : true,
     }
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
@@ -44,8 +47,6 @@ class Signup extends Component {
     this.addPhoneNumber = this.addPhoneNumber.bind(this);
     this.addEmail = this.addEmail.bind(this);
     this.submitRegistrationDetails = this.submitRegistrationDetails.bind(this);
-    // this.handleState = this.handleState.bind(this);
-    // this.handleCity = this.handleCity.bind(this);
     this.handleGenderChange = this.handleGenderChange.bind(this);
     this.changeValue = this.changeValue.bind(this);
     this.getStates = this.getStates.bind(this);
@@ -53,26 +54,6 @@ class Signup extends Component {
   }
 
   componentDidMount(){
-  	// fetchJsonp("http://battuta.medunes.net/api/city/jp/search/?city=paris&callback=?&key=94c9e2a436810559a857776bb70ec849")
- 		// .then(function(response){
-    //   return response.json();
-    // })
-    // .then(function(myjson){
-    //   console.log("Json",myjson);
-    // });
-    // // console.log("state",this.states);
-
-
-    // fetchJsonp("https://battuta.medunes.net/api/region/IN/all/?key=94c9e2a436810559a857776bb70ec849",
-    //   )
-    //   .then(function(response) {
-    //     return response.json()
-    //   }).then(function(json) {
-    //       return {options : json }
-    //       console.log("json",json);
-    //   }).catch(function(ex) {
-    //     console.log('parsing failed', ex)
-    //   })
     fetchJsonp('https://battuta.medunes.net/api/region/IN/all/?key=94c9e2a436810559a857776bb70ec849')
       .then((response) => {
       return response.json();
@@ -85,6 +66,13 @@ class Signup extends Component {
       });
 
   }
+
+  // postCall(){
+  //   fetch(API-URL, {
+  //         method:'POST',
+  //         body: user
+  //       });
+  // }
 
   addFirstName(e) {
     var updatedError = "";
@@ -107,7 +95,7 @@ class Signup extends Component {
           first_name : updatedError
         }
       });
-      console.log("name",this.state.first_name);
+
     }
 
 
@@ -445,7 +433,11 @@ class Signup extends Component {
       user.salary = currentValue;
       user.selectedState = selectedState.value;
       user.selectedCity = selectedCity.value;
-      console.log("user",user);
+      // console.log("user",user);
+      let usrs = reactLocalStorage.getObject('users');
+      usrs.users.push(user);
+      reactLocalStorage.setObject('users', usrs);
+      console.log(reactLocalStorage.getObject('users'));
       if(user){
         this.nextStep();
       }

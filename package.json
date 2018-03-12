@@ -16,6 +16,7 @@
     "react-scripts": "1.1.1",
     "react-select": "^1.2.1",
     "react-select-me": "^0.10.3",
+    "reactjs-localstorage": "0.0.6",
     "underscore": "^1.8.3",
     "validator": "^9.4.1"
   },
